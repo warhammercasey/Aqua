@@ -10,8 +10,13 @@ client.on('ready', () => {
 });
 
 
-
+// Runs when message is sent
 client.on('message', message => {
+
+    // Return if not in selected channel
+    if (message.channel.name != config.channel) {
+        return;
+    }
 
     if (message.content === 'ping') {
 
