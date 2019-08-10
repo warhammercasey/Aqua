@@ -18,7 +18,7 @@ client.on('ready', () => {
 
 // Runs when message is sent
 client.on('message', async message => {
-
+    return;
     messageString = message.content;
 
     // Check if it contains 6 didget number
