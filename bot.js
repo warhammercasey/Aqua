@@ -41,8 +41,8 @@ client.on('message', async message => {
             characters = "none";
         }
         if (typeof hentai.details.tags !== 'undefined') {
-            parodies = hentai.details.tags;
-        } else tags
+            tags = hentai.details.tags;
+        } else {
             tags = "none";
         }
         message.channel.send(hentai.title + "\r" + 
