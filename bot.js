@@ -13,17 +13,22 @@ client.on('ready', () => {
 // Runs when message is sent
 client.on('message', message => {
 
-    // Return if not in selected channel
-    if (!config.channel.includes(message.channel.name)) {
+    messageString = message.content;
+
+    // Return if not in selected channel or starts with a .
+    if (!config.channel.includes(message.channel.name) || !messageString.startsWith(".")) {
         return;
     }
+    
+    // Cut off .
+    messageString = messageString.slice(1);
 
-    if (message.content === 'ping') {
+    if (messageString === 'ping') {
 
         message.reply('No Fuck You'.toUpperCase());
 
     }
-	if (message.content === 'pong') {
+	if (messageString === 'pong') {
 
         message.reply('ping'.toUpperCase());
 
