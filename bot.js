@@ -36,7 +36,7 @@ client.on('message', async message => {
             parodies = "none";
         }
         if (typeof hentai.details.characters !== 'undefined') {
-            tags = hentai.details.characters;
+            characters = hentai.details.characters;
         } else {
             characters = "none";
         }
