@@ -71,6 +71,7 @@ client.on('message', async message => {
             doujins = await nhentai.search(arguments);
             console.log(doujins);
             rnd = Math.floor(Math.random * doujins.results.length)
+            console.log(doujins.results[rnd]);
             doujin = doujins.results[rnd];
             message.channel.send(doujin.title + "\r" +
                 "Link: https://t.nhentai.net/g/" + doujin.bookId);
