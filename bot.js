@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config');
+const ytdl = require('ytdl-core');
 
 
 client.on('ready', () => {
@@ -23,16 +24,26 @@ client.on('message', message => {
     // Cut off .
     messageString = messageString.slice(1);
 
-    if (messageString === 'ping') {
+    // Cut off everything except for the command part of the command
+    command = messageString.split(" ")[0];
+    arguments = messageString.split(" ");
+    console.log(arguments);
+    console.log(command);
 
-        message.reply('No Fuck You'.toUpperCase());
-
+    switch (command) {
+        case "stop":
+            audioStream.end();
+        case "play":
+            audioStream = connection.playStream(ytdl(arguments[1], { filter: 'audioonly' }));
+        case "join":
+            // Only try to join the sender's voice channel if they are in one themselves
+            if (message.member.voice.channel) {
+                const connection = await message.member.voiceChannel.join();
+            } else {
+                message.reply('You need to join a voice channel first!');
+            }
     }
-	if (messageString === 'pong') {
 
-        message.reply('ping'.toUpperCase());
-
-    }
 });
 
 
