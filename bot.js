@@ -69,9 +69,9 @@ client.on('message', async message => {
     switch (command) {
         case "doujin":
             doujins = await nhentai.search(arguments);
-            console.log(doujins);
             rnd = Math.floor(Math.random * doujins.results.length)
-            console.log(doujins.results[rnd]);
+            console.log(rnd);
+            console.log(doujins.results);
             doujin = doujins.results[rnd];
             message.channel.send(doujin.title + "\r" +
                 "Link: https://t.nhentai.net/g/" + doujin.bookId);
