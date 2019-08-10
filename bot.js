@@ -14,7 +14,7 @@ client.on('ready', () => {
 client.on('message', message => {
 
     // Return if not in selected channel
-    if (message.channel.name != config.channel) {
+    if (!config.channel.includes(message.channel.name)) {
         return;
     }
 

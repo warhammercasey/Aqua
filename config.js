@@ -1,6 +1,5 @@
 var config = {};
 
-config.channel = 'weeb-chat';
-config.channel = 'music';
+config.channel = ['weeb-chat','music'];
 
 module.exports = config;
