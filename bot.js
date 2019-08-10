@@ -36,13 +36,13 @@ client.on('message', async message => {
             parodies = "none";
         }
         if (typeof hentai.details.characters !== 'undefined') {
-            parodies = hentai.details.characters;
+            tags = hentai.details.characters;
         } else {
             characters = "none";
         }
         if (typeof hentai.details.tags !== 'undefined') {
             parodies = hentai.details.tags;
-        } else {
+        } else tags
             tags = "none";
         }
         message.channel.send(hentai.title + "\r" + 
