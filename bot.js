@@ -76,14 +76,41 @@ client.on('message', async message => {
                 "Link: https://t.nhentai.net/g/" + doujin.bookId, {
                     file: doujin.thumbnail
                 });
+            break;
         case "pause":
-            audioStream.pause();
+            if (typeof audioStream !== 'undefined') {
+                audioStream.pause();
+            } else {
+                message.reply('Nothing is playing');
+            }
+            break;
         case "resume":
-            audioStream.resume();
+            if (typeof audioStream !== 'undefined') {
+                audioStream.resume();
+            } else {
+                message.reply('Nothing is playing');
+            }
+            break;
         case "stop":
-            audioStream.end();
+            if (typeof audioStream !== 'undefined') {
+                audioStream.end();
+            } else {
+                message.reply('Nothing is playing');
+            }
+            break;
         case "play":
-            audioStream = connection.playStream(ytdl(arguments[1], { filter: 'audioonly' }));
+            if (typeof connection !== 'undefined') {
+                audioStream = connection.playStream(ytdl(arguments[1], { filter: 'audioonly' }));
+            } else {
+                // Only try to join the sender's voice channel if they are in one themselves
+                if (message.member.voiceChannel) {
+                    connection = await message.member.voiceChannel.join();
+                    audioStream = connection.playStream(ytdl(arguments[1], { filter: 'audioonly' }));
+                } else {
+                    message.reply('You need to join a voice channel first!');
+                }
+            }
+            break;
         case "join":
             // Only try to join the sender's voice channel if they are in one themselves
             if (message.member.voiceChannel) {
@@ -91,6 +118,7 @@ client.on('message', async message => {
             } else {
                 message.reply('You need to join a voice channel first!');
             }
+            break;
     }
 });
 
