@@ -68,7 +68,7 @@ client.on('message', async message => {
 
     switch (command) {
         case "doujin":
-            doujins = nhentai.search(arguments);
+            doujins = await nhentai.search(arguments);
             console.log(doujins);
             rnd = Math.floor(Math.random * doujins.results.length)
             doujin = doujins.results[rnd];
