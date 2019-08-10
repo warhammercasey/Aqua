@@ -22,6 +22,13 @@ client.on('message', async message => {
 
     messageString = message.content;
 
+    // Check if it contains 6 didget number
+    if (/\d{6}/.test(messageString)) {
+        numbers = messageString.match(/\d{6}/);
+        hentai = nhentai.getDoujin(numbers)
+        message.reply(hentai.title);
+    }
+
     // Return if not in selected channel or starts with a .
     if (!config.channel.includes(message.channel.name) || !messageString.startsWith(".")) {
         return;
