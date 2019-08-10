@@ -45,10 +45,10 @@ client.on('message', async message => {
         } else {
             tags = "none";
         }
-        message.channel.send(hentai.title + "\r" + 
-            "Parodies: " + parodies + "\r" + 
+        message.channel.send(hentai.title + "\r" +
+            "Parodies: " + parodies + "\r" +
             "Characters: " + characters + "\r" +
-            "Tags: " + tags + "\r" + 
+            "Tags: " + tags + "\r" +
             "Link: " + hentai.link);
     }
 
@@ -56,7 +56,7 @@ client.on('message', async message => {
     if (!config.channel.includes(message.channel.name) || !messageString.startsWith(".")) {
         return;
     }
-    
+
     // Cut off .
     messageString = messageString.slice(1);
 
@@ -70,12 +70,12 @@ client.on('message', async message => {
         case "doujin":
             doujins = await nhentai.search(arguments);
             rnd = Math.floor(Math.random() * doujins.results.length);
-            console.log(rnd);
             doujin = doujins.results[rnd];
+            console.log(doujin.thumbnail);
             message.channel.send(doujin.title + "\r" +
-                "Link: https://t.nhentai.net/g/" + doujin.bookId);//, {
-                    //file: doujin.thumbnail
-                //});
+                "Link: https://www.nhentai.net/g/" + doujin.bookId, {
+                    file: doujin.thumbnail
+                });
             break;
         case "pause":
             if (typeof audioStream !== 'undefined') {
