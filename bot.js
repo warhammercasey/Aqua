@@ -30,7 +30,7 @@ client.on('message', async message => {
         hentai = await nhentai.getDoujin(numbers[0]);
         console.log(hentai);
         message.channel.send(hentai.title + "\r" + 
-            "Parodies: " + hentai.parodies[0] + " and " + hentai.details.parodies.length-1 + " more\r" + 
+            "Parodies: " + hentai.details.parodies[0] + " and " + hentai.details.parodies.length-1 + " more\r" + 
             "Characters: " + hentai.details.characters[0] + " and " + hentai.details.characters - 1 + " more\r" +
             "Tags: " + hentai.details.tags + "\r" + 
             "Link: " + hentai.link);
