@@ -23,9 +23,12 @@ client.on('message', async message => {
 
     // Check if it contains 6 didget number
     if (/\d{6}/.test(messageString)) {
+        if (message.mentions.members.first()){
+            return;
+        }
         numbers = messageString.match(/\d{6}/);
         console.log(numbers[0]);
-        hentai = nhentai.getDoujin(numbers[0]);
+        hentai = await nhentai.getDoujin(numbers[0]);
         message.reply(hentai.title);
     }
 
