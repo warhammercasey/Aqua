@@ -12,7 +12,7 @@ client.on('ready', () => {
 
 
 // Runs when message is sent
-client.on('message', message => {
+client.on('message', async message => {
 
     messageString = message.content;
 
