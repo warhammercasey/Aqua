@@ -73,7 +73,9 @@ client.on('message', async message => {
             console.log(rnd);
             doujin = doujins.results[rnd];
             message.channel.send(doujin.title + "\r" +
-                "Link: https://t.nhentai.net/g/" + doujin.bookId);
+                "Link: https://t.nhentai.net/g/" + doujin.bookId, {
+                    file: doujin.thumbnail
+                });
         case "pause":
             audioStream.pause();
         case "resume":
