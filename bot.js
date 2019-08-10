@@ -4,6 +4,7 @@ const config = require('./config');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
+const nhentai = require('nhentai-js');
 
 var connection;
 
@@ -11,6 +12,7 @@ var connection;
 client.on('ready', () => {
 
     console.log('I am ready!');
+    console.log(nhentai);
 
 });
 
@@ -35,6 +37,10 @@ client.on('message', async message => {
     console.log(command);
 
     switch (command) {
+        case "pause":
+            audioStream.pause();
+        case "resume":
+            audioStream.resume();
         case "stop":
             audioStream.end();
         case "play":
@@ -43,7 +49,6 @@ client.on('message', async message => {
             // Only try to join the sender's voice channel if they are in one themselves
             if (message.member.voiceChannel) {
                 connection = await message.member.voiceChannel.join();
-                console.log(connection);
             } else {
                 message.reply('You need to join a voice channel first!');
             }
