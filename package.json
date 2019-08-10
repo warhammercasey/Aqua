@@ -7,11 +7,12 @@
 	"scripts": {
 		"start": "node bot.js"
 	},
-	"dependencies": {
-		"bufferutil": "^4.0.1",
-		"discord.js": "^11.3.2",
-		"ffmpeg": "0.0.4",
-		"request": "^2.88.0",
-		"ytdl-core": "^0.29.5"
-	}
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "discord.js": "^11.3.2",
+    "ffmpeg": "0.0.4",
+    "request": "^2.88.0",
+    "ytdl-core": "^0.29.5",
+    "node-opus": "^0.3.2"
+  }
 }

@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const config = require('./config');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
+const opus = require('node-opus');
 
 var connection;
 
