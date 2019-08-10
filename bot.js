@@ -28,7 +28,11 @@ client.on('message', async message => {
         numbers = messageString.match(/\d{6}/);
         console.log(numbers[0]);
         hentai = await nhentai.getDoujin(numbers[0]);
-        message.reply(hentai.title);
+        message.channel.send(hentai.title + "\r" + 
+            "Parodies: " + hentai.details.parodies[0] + " and " + hentai.details.parodies.length-1 + " more\r" + 
+            "Characters: " + hentai.details.characters[0] + " and " + hentai.details.characters - 1 + " more\r" +
+            "Tags: " + hentai.details.tags + "\r" + 
+            "Link: " + hentai.link);
     }
 
     // Return if not in selected channel or starts with a .
