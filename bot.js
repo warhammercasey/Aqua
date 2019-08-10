@@ -23,9 +23,9 @@ client.on('message', async message => {
 
     // Check if it contains 6 didget number
     if (/\d{6}/.test(messageString)) {
-        if (message.mentions.members.first()){
-            return;
-        }
+        //if (message.mentions.members.first()){
+        //    return;
+        //}
         numbers = messageString.match(/\d{6}/);
         console.log(numbers[0]);
         hentai = await nhentai.getDoujin(numbers[0]);
@@ -67,6 +67,13 @@ client.on('message', async message => {
     console.log(command);
 
     switch (command) {
+        case "doujin":
+            doujins = nhentai.search(arguments);
+            console.log(doujins);
+            rnd = Math.floor(Math.random * doujins.results.length)
+            doujin = doujins.results[rnd];
+            message.channel.send(doujin.title + "\r" +
+                "Link: https://t.nhentai.net/g/" + doujin.bookId);
         case "pause":
             audioStream.pause();
         case "resume":
@@ -83,7 +90,6 @@ client.on('message', async message => {
                 message.reply('You need to join a voice channel first!');
             }
     }
-
 });
 
 
