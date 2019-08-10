@@ -12,6 +12,7 @@
 		"discord.js": "^11.3.2",
 		"ffmpeg": "0.0.4",
 		"request": "^2.88.0",
-		"ytdl-core": "^0.29.5"
+		"ytdl-core": "^0.29.5",
+		"ffmpeg-binaries": "4.0.0"
 	}
 }
