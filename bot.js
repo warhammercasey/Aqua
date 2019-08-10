@@ -29,10 +29,25 @@ client.on('message', async message => {
         console.log(numbers[0]);
         hentai = await nhentai.getDoujin(numbers[0]);
         console.log(hentai);
+        if (typeof hentai.details.parodies !== 'undefined') {
+            parodies = hentai.details.parodies;
+        } else {
+            parodies = "none";
+        }
+        if (typeof hentai.details.characters !== 'undefined') {
+            parodies = hentai.details.characters;
+        } else {
+            characters = "none";
+        }
+        if (typeof hentai.details.tags !== 'undefined') {
+            parodies = hentai.details.tags;
+        } else {
+            tags = "none";
+        }
         message.channel.send(hentai.title + "\r" + 
-            "Parodies: " + hentai.details.parodies[0] + " and " + hentai.details.parodies.length-1 + " more\r" + 
-            "Characters: " + hentai.details.characters[0] + " and " + hentai.details.characters - 1 + " more\r" +
-            "Tags: " + hentai.details.tags + "\r" + 
+            "Parodies: " + parodies + "\r" + 
+            "Characters: " + characters + "\r" +
+            "Tags: " + tags + "\r" + 
             "Link: " + hentai.link);
     }
 
