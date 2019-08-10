@@ -4,6 +4,8 @@ const config = require('./config');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 
+var connection;
+
 
 client.on('ready', () => {
 
@@ -39,7 +41,7 @@ client.on('message', async message => {
         case "join":
             // Only try to join the sender's voice channel if they are in one themselves
             if (message.member.voiceChannel) {
-                const connection = await message.member.voiceChannel.join();
+                connection = await message.member.voiceChannel.join();
                 console.log(connection);
             } else {
                 message.reply('You need to join a voice channel first!');
