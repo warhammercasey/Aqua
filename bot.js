@@ -15,10 +15,14 @@ client.on('message', message => {
 
     if (message.content === 'ping') {
 
-        message.reply('pong'.toUpperCase());
+        message.reply('No Fuck You'.toUpperCase());
 
     }
+	if (message.content === 'pong') {
 
+        message.reply('ping'.toUpperCase());
+
+    }
 });
 
 
