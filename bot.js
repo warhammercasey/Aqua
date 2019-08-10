@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const config = require('./config');
 const ytdl = require('ytdl-core');
+const ffmpeg = require('ffmpeg');
 
 
 client.on('ready', () => {
