@@ -53,7 +53,7 @@ client.on('message', async message => {
     }
 
     // Return if not in selected channel or starts with a .
-    if (!config.channel.includes(message.channel.name) || !messageString.startsWith(".")) {
+    if (!config.channel.includes(message.channel.name) || !messageString.startsWith(config.command)) {
         return;
     }
 
@@ -126,4 +126,4 @@ client.on('message', async message => {
 
 // THIS  MUST  BE  THIS  WAY
 
-client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
+client.login("NjA5OTEzODI3MjExMDgzNzk3.XU9orA.mquprSGqPGtCOB8CVDI4QPeZcE4");//BOT_TOKEN is the Client Secret
