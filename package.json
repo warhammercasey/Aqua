@@ -1,19 +1,25 @@
 {
-	"name": "chat-controller-bot",
-	"version": "1.0.0",
-	"description": "chat controller bot",
-	"main": "bot.js",
-	"author": "warhammercasey",
-	"scripts": {
-		"start": "node bot.js"
-	},
-  "dependencies": {
-    "bufferutil": "^4.0.1",
-    "discord.js": "^11.3.2",
-    "ffmpeg": "0.0.4",
-    "request": "^2.88.0",
-    "ytdl-core": "^0.29.5",
-    "node-opus": "^0.3.2",
-    "nhentai-js": "3.2.0"
-  }
+ "name": "chat-controller-bot",
+ "version": "1.0.0",
+ "description": "chat controller bot",
+ "main": "bot.js",
+ "author": "warhammercasey",
+ "scripts": {
+  "start": "node bot.js",
+  "token": "BOT_TOKEN=NjA5NTkyMzU2MTgxNjM5MTc5.XU4_0A.TZaPK3YPyFZZr_vURT3zCAoelBI"
+ },
+ "dependencies": {
+  "@discordjs/uws": "^11.149.1",
+  "bufferutil": "^4.0.1",
+  "discord.js": "^11.5.1",
+  "erlpack": "^0.1.2",
+  "ffmpeg": "0.0.4",
+  "libsodium-wrappers": "^0.7.5",
+  "nhentai-js": "^3.2.0",
+  "node-opus": "^0.3.2",
+  "opusscript": "0.0.7",
+  "request": "^2.88.0",
+  "sodium": "^3.0.2",
+  "ytdl-core": "^0.29.5"
+ }
 }
