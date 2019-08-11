@@ -142,4 +142,4 @@ client.on('message', async message => {
 
 // THIS  MUST  BE  THIS  WAY
 
-client.login(token.token);//BOT_TOKEN is the Client Secret
+client.login(process.env.BOT_TOKEN);//BOT_TOKEN is the Client Secret
