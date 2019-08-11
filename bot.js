@@ -5,7 +5,7 @@ const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
 const nhentai = require('nhentai-js');
-const token = require('./token');
+//const token = require('./token');
 const request = require('superagent');
 const cheerio = require('cheerio');
 
