@@ -5,6 +5,7 @@ const ytdl = require('ytdl-core');
 const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
 const nhentai = require('nhentai-js');
+const token = require('./token');
 
 var connection;
 
@@ -27,29 +28,28 @@ client.on('message', async message => {
         //    return;
         //}
         numbers = messageString.match(/\d{6}/);
-        console.log(numbers[0]);
-        hentai = await nhentai.getDoujin(numbers[0]);
-        console.log(hentai);
-        if (typeof hentai.details.parodies !== 'undefined') {
-            parodies = hentai.details.parodies;
-        } else {
-            parodies = "none";
-        }
-        if (typeof hentai.details.characters !== 'undefined') {
-            characters = hentai.details.characters;
-        } else {
-            characters = "none";
-        }
-        if (typeof hentai.details.tags !== 'undefined') {
-            tags = hentai.details.tags;
-        } else {
-            tags = "none";
-        }
-        message.channel.send(hentai.title + "\r" +
-            "Parodies: " + parodies + "\r" +
-            "Characters: " + characters + "\r" +
-            "Tags: " + tags + "\r" +
-            "Link: " + hentai.link);
+        console.log(numbers);
+            hentai = await nhentai.getDoujin(numbers[0]);
+            if (typeof hentai.details.parodies !== 'undefined') {
+                parodies = hentai.details.parodies;
+            } else {
+                parodies = "none";
+            }
+            if (typeof hentai.details.characters !== 'undefined') {
+                characters = hentai.details.characters;
+            } else {
+                characters = "none";
+            }
+            if (typeof hentai.details.tags !== 'undefined') {
+                tags = hentai.details.tags;
+            } else {
+                tags = "none";
+            }
+            message.channel.send(hentai.title + "\r" +
+                "Parodies: " + parodies + "\r" +
+                "Characters: " + characters + "\r" +
+                "Tags: " + tags + "\r" +
+                "Link: " + hentai.link);
     }
 
     // Return if not in selected channel or starts with a .
@@ -68,10 +68,22 @@ client.on('message', async message => {
 
     switch (command) {
         case "doujin":
-            doujins = await nhentai.search(arguments);
-            rnd = Math.floor(Math.random() * doujins.results.length);
-            doujin = doujins.results[rnd];
-            console.log(doujin.thumbnail);
+            doujins = await nhentai.search(arguments[1], 1, "popular");
+            while (true) {
+                rnd = Math.floor(Math.random() * doujins.results.length);
+                doujin = doujins.results[rnd];
+                details = await nhentai.getDoujin(doujin.bookId);
+                english = false;
+                for (i = 0; i < details.details.languages.length; i++) {
+                    if (details.details.languages[i].includes('english')) {
+                        english = true;
+                    }
+                }
+                if (english) {
+
+                }
+
+            }
             message.channel.send(doujin.title + "\r" +
                 "Link: https://www.nhentai.net/g/" + doujin.bookId, {
                     file: doujin.thumbnail
@@ -126,4 +138,4 @@ client.on('message', async message => {
 
 // THIS  MUST  BE  THIS  WAY
 
-client.login("NjA5OTEzODI3MjExMDgzNzk3.XU9orA.mquprSGqPGtCOB8CVDI4QPeZcE4");//BOT_TOKEN is the Client Secret
+client.login(token.token);//BOT_TOKEN is the Client Secret
