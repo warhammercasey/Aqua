@@ -138,12 +138,6 @@ client.on('message', async message => {
     }
 });
 
-function findObject(obj, key, value) {
-    const found = Object.entries(obj).filter(object => object[1][key] === value)[0]
-    if (found) { return found[1] }
-    return null
-}
-
 
 
 // THIS  MUST  BE  THIS  WAY
