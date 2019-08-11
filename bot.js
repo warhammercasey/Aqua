@@ -69,7 +69,8 @@ client.on('message', async message => {
     switch (command) {
         case "doujin":
             doujins = await nhentai.search(arguments[1], 1, "popular");
-            while (true) {
+            fails = true;
+            while (fails) {
                 rnd = Math.floor(Math.random() * doujins.results.length);
                 doujin = doujins.results[rnd];
                 details = await nhentai.getDoujin(doujin.bookId);
@@ -79,8 +80,19 @@ client.on('message', async message => {
                         english = true;
                     }
                 }
+                fails = false;
                 if (english) {
-
+                    for (i = 2; i < arguments.length; i++) {
+                        includes = false;
+                        for (ii = 0; ii < details.details.tags; ii++) {
+                            if (details.details.tags[ii].includes(arguments[i])) {
+                                includes = true;
+                            }
+                        }
+                        if (!includes) {
+                            fails = true;
+                        }
+                    }
                 }
 
             }
