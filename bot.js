@@ -6,6 +6,8 @@ const ffmpeg = require('ffmpeg');
 const opus = require('node-opus');
 const nhentai = require('nhentai-js');
 const token = require('./token');
+const request = require('superagent');
+const cheerio = require('cheerio');
 
 var connection;
 
@@ -63,14 +65,18 @@ client.on('message', async message => {
     // Cut off everything except for the command part of the command
     command = messageString.split(" ")[0];
     arguments = messageString.split(" ");
+    argument = arguments[1] ? messageString.substr(messageString.indexOf(' ') + 1) : '';
     console.log(arguments);
     console.log(command);
 
     switch (command) {
         case "doujin":
-            doujins = await nhentai.search(arguments[1], 1, "popular");
-            fails = true;
-            while (fails) {
+            doujins = await nhentai.search(argument, 1, "popular");
+            pages = doujins.lastPage;
+            english = false;
+            while (!english) {
+                rnd = Math.floor(Math.random() * (pages-1))+1;
+                doujins = await nhentai.search(argument, rnd, "popular");
                 rnd = Math.floor(Math.random() * doujins.results.length);
                 doujin = doujins.results[rnd];
                 details = await nhentai.getDoujin(doujin.bookId);
@@ -78,20 +84,6 @@ client.on('message', async message => {
                 for (i = 0; i < details.details.languages.length; i++) {
                     if (details.details.languages[i].includes('english')) {
                         english = true;
-                    }
-                }
-                fails = false;
-                if (english) {
-                    for (i = 2; i < arguments.length; i++) {
-                        includes = false;
-                        for (ii = 0; ii < details.details.tags; ii++) {
-                            if (details.details.tags[ii].includes(arguments[i])) {
-                                includes = true;
-                            }
-                        }
-                        if (!includes) {
-                            fails = true;
-                        }
                     }
                 }
 
@@ -145,6 +137,12 @@ client.on('message', async message => {
             break;
     }
 });
+
+function findObject(obj, key, value) {
+    const found = Object.entries(obj).filter(object => object[1][key] === value)[0]
+    if (found) { return found[1] }
+    return null
+}
 
 
 
